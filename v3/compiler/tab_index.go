@@ -1,10 +1,11 @@
 package compiler
 
 import (
-	"github.com/davyxu/tabtoy/v3/model"
 	"path/filepath"
 	"sort"
 	"strings"
+
+	"github.com/davyxu/tabtoy/v3/model"
 )
 
 func parseIndexRow(tab *model.DataTable, symbols *model.TypeTable) (pragmaList []*model.IndexDefine) {
@@ -39,6 +40,10 @@ func LoadIndexTable(globals *model.Globals, fileName string) error {
 		return nil
 	}
 
+	if globals.InputPath != "" {
+		fileName = filepath.Join(globals.InputPath, fileName)
+	}
+
 	// 加载原始数据
 	tabs, err := LoadDataTable(globals.IndexGetter, fileName, "IndexDefine", "IndexDefine", globals.Types)
 
@@ -68,6 +73,12 @@ func LoadIndexTable(globals *model.Globals, fileName string) error {
 		return a.TableFileName < b.TableFileName
 
 	})
+
+	if globals.InputPath != "" {
+		for _, v := range pragmaList {
+			v.TableFileName = filepath.Join(globals.InputPath, v.TableFileName)
+		}
+	}
 
 	globals.IndexList = pragmaList
 

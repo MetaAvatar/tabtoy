@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"os"
+
 	"github.com/davyxu/tabtoy/build"
 	"github.com/davyxu/tabtoy/v3/compiler"
 	"github.com/davyxu/tabtoy/v3/gen"
@@ -17,7 +19,6 @@ import (
 	"github.com/davyxu/tabtoy/v3/helper"
 	"github.com/davyxu/tabtoy/v3/model"
 	"github.com/davyxu/tabtoy/v3/report"
-	"os"
 )
 
 type V3GenEntry struct {
@@ -29,6 +30,7 @@ type V3GenEntry struct {
 
 // v3新增
 var (
+	paramInputPath = flag.String("input_dir", "", "input dir for prefix")
 	paramIndexFile = flag.String("index", "", "input multi-files configs")
 	paramTagAction = flag.String("tag_action", "", "do action by tag selected target, format: action1:tag1+tag2|action2:tag1+tag3")
 
@@ -111,6 +113,7 @@ func V3Entry() {
 		globals.CacheDir = *paramCacheDir
 		os.Mkdir(globals.CacheDir, 0666)
 	}
+	globals.InputPath = *paramInputPath
 	globals.IndexFile = *paramIndexFile
 	globals.PackageName = *paramPackageName
 	globals.CombineStructName = *paramCombineStructName

@@ -6,6 +6,7 @@ import (
 
 type Globals struct {
 	Version           string // 工具版本号
+	InputPath         string //输入文件目录路径
 	IndexFile         string // 指示文件
 	PackageName       string // 文件生成时的包名
 	CombineStructName string // 包含最终表所有数据的根结构
