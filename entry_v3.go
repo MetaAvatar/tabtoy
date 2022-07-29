@@ -30,7 +30,6 @@ type V3GenEntry struct {
 
 // v3新增
 var (
-	paramInputPath = flag.String("input_dir", "", "input dir for prefix")
 	paramIndexFile = flag.String("index", "", "input multi-files configs")
 	paramTagAction = flag.String("tag_action", "", "do action by tag selected target, format: action1:tag1+tag2|action2:tag1+tag3")
 

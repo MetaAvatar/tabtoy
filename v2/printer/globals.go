@@ -1,9 +1,10 @@
 package printer
 
 import (
+	"strings"
+
 	"github.com/davyxu/tabtoy/v2/i18n"
 	"github.com/davyxu/tabtoy/v2/model"
-	"strings"
 )
 
 type TableIndex struct {
@@ -22,6 +23,8 @@ type Globals struct {
 	LuaTabHeader       string
 	GenCSSerailizeCode bool
 	PackageName        string
+	InputPath          string
+	OutputPath         string
 	ModList            []string
 
 	Printers []*PrinterContext

@@ -22,6 +22,9 @@ var (
 
 	// 输出日志语言
 	paramLanguage = flag.String("lan", "en_us", "set output language")
+
+	paramInputPath  = flag.String("input_dir", "", "input dir for prefix")
+	paramOutputPath = flag.String("output_dir", "", "output dir for prefix")
 )
 
 var (

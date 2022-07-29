@@ -2,15 +2,19 @@ package main
 
 import (
 	"flag"
+	"os"
+	"path/filepath"
+
 	"github.com/davyxu/tabtoy/build"
-	"github.com/davyxu/tabtoy/v2"
+	v2 "github.com/davyxu/tabtoy/v2"
 	"github.com/davyxu/tabtoy/v2/i18n"
 	"github.com/davyxu/tabtoy/v2/printer"
-	"os"
 )
 
 // v2特有
 var (
+	// paramInputPath = flag.String("input_dir", "", "input dir for prefix")
+
 	paramProtoVersion = flag.Int("protover", 3, "output .proto file version, 2 or 3")
 
 	paramLuaEnumIntValue = flag.Bool("luaenumintvalue", false, "use int type in lua enum value")
@@ -28,8 +32,13 @@ func V2Entry() {
 	}
 
 	g.Version = build.Version
+	g.InputPath = *paramInputPath
+	g.OutputPath = *paramOutputPath
 
 	for _, v := range flag.Args() {
+		if g.InputPath != "" {
+			v = filepath.Join(g.InputPath, v)
+		}
 		g.InputFileList = append(g.InputFileList, v)
 	}
 
@@ -52,11 +61,11 @@ func V2Entry() {
 	}
 
 	if *paramJsonOut != "" {
-		g.AddOutputType("json", *paramJsonOut)
+		g.AddOutputType("json", filepath.Join(g.OutputPath, *paramJsonOut))
 	}
 
 	if *paramLuaOut != "" {
-		g.AddOutputType("lua", *paramLuaOut)
+		g.AddOutputType("lua", filepath.Join(g.OutputPath, *paramLuaOut))
 	}
 
 	if *paramCSharpOut != "" {

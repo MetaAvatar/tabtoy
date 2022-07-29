@@ -1,12 +1,13 @@
 package v2
 
 import (
-	"github.com/davyxu/tabtoy/v2/i18n"
-	"github.com/davyxu/tabtoy/v2/printer"
 	"os"
 	"path/filepath"
 	"strings"
 	"sync"
+
+	"github.com/davyxu/tabtoy/v2/i18n"
+	"github.com/davyxu/tabtoy/v2/printer"
 )
 
 func getFileList(g *printer.Globals) (ret []string) {
