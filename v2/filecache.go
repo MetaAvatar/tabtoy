@@ -35,6 +35,8 @@ func cacheFile(g *printer.Globals) (fileObjByName map[string]*File) {
 
 	filelist := getFileList(g)
 
+	log.Infof("[file-list] %v", filelist)
+
 	var cachedir string
 	if g.UseCache {
 		cachedir = g.CacheDir
