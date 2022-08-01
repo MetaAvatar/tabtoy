@@ -1,10 +1,8 @@
 package v2
 
 import (
-	"path/filepath"
 	"strings"
 
-	"github.com/davyxu/tabtoy/v2/i18n"
 	"github.com/davyxu/tabtoy/v2/model"
 	"github.com/davyxu/tabtoy/v2/printer"
 )
@@ -19,7 +17,7 @@ func Run(g *printer.Globals) bool {
 
 	fileObjList := make([]*File, 0)
 
-	log.Infof("==========%s==========", i18n.String(i18n.Run_CollectTypeInfo))
+	// log.Infof("==========%s==========", i18n.String(i18n.Run_CollectTypeInfo))
 
 	// 合并类型
 	for _, in := range g.InputFileList {
@@ -38,12 +36,12 @@ func Run(g *printer.Globals) bool {
 				return false
 			}
 
-			var mergeTarget string
-			if len(mergeFileList) > 1 {
-				mergeTarget = "--> " + filepath.Base(mergeFileList[0])
-			}
+			// var mergeTarget string
+			// if len(mergeFileList) > 1 {
+			// 	mergeTarget = "--> " + filepath.Base(mergeFileList[0])
+			// }
 
-			log.Infoln(filepath.Base(fileName), mergeTarget)
+			// log.Infoln(filepath.Base(fileName), mergeTarget)
 
 			file.GlobalFD = g.FileDescriptor
 
@@ -78,11 +76,11 @@ func Run(g *printer.Globals) bool {
 
 	}
 
-	log.Infof("==========%s==========", i18n.String(i18n.Run_ExportSheetData))
+	// log.Infof("==========%s==========", i18n.String(i18n.Run_ExportSheetData))
 
 	for _, file := range fileObjList {
 
-		log.Infoln(filepath.Base(file.FileName))
+		// log.Infoln(filepath.Base(file.FileName))
 
 		dataModel := model.NewDataModel()
 
@@ -97,7 +95,7 @@ func Run(g *printer.Globals) bool {
 		// 子表提供数据
 		for _, mergeFile := range file.mergeList {
 
-			log.Infoln(filepath.Base(mergeFile.FileName), "--->", filepath.Base(file.FileName))
+			// log.Infoln(filepath.Base(mergeFile.FileName), "--->", filepath.Base(file.FileName))
 
 			// 电子表格数据导出到Table对象
 			if !mergeFile.ExportData(dataModel, file.Header) {

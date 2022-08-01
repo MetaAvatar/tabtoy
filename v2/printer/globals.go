@@ -88,7 +88,7 @@ func (self *Globals) AddOutputType(name string, outfile string) {
 
 func (self *Globals) Print() bool {
 
-	log.Infof("==========%s==========", i18n.String(i18n.Globals_OutputCombineData))
+	// log.Infof("==========%s==========", i18n.String(i18n.Globals_OutputCombineData))
 
 	for _, p := range self.Printers {
 

@@ -6,7 +6,6 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/davyxu/tabtoy/v2/i18n"
 	"github.com/davyxu/tabtoy/v2/printer"
 )
 
@@ -31,11 +30,11 @@ func cacheFile(g *printer.Globals) (fileObjByName map[string]*File) {
 	var fileObjByNameGuard sync.Mutex
 	fileObjByName = map[string]*File{}
 
-	log.Infof("==========%s==========", i18n.String(i18n.Run_CacheFile))
+	// log.Infof("==========%s==========", i18n.String(i18n.Run_CacheFile))
 
 	filelist := getFileList(g)
 
-	log.Infof("[file-list] %v", filelist)
+	// log.Infof("[file-list] %v", filelist)
 
 	var cachedir string
 	if g.UseCache {
@@ -56,7 +55,7 @@ func cacheFile(g *printer.Globals) (fileObjByName map[string]*File) {
 			log.Infof("%s [Cache]", nameOnly)
 		} else {
 			g.ModList = append(g.ModList, nameOnly)
-			log.Infof("%s", nameOnly)
+			// log.Infof("%s", nameOnly)
 		}
 
 		fileObjByNameGuard.Unlock()
